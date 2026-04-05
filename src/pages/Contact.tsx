@@ -1,0 +1,89 @@
+import { useState } from "react";
+import Layout from "@/components/Layout";
+import PageHero from "@/components/PageHero";
+import { useI18n } from "@/lib/i18n";
+import { Button } from "@/components/ui/button";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
+export default function Contact() {
+  const { t } = useI18n();
+  const { toast } = useToast();
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({ title: "Message envoyé !", description: "Nous vous répondrons dans les plus brefs délais." });
+    setForm({ name: "", email: "", subject: "", message: "" });
+  };
+
+  return (
+    <Layout>
+      <PageHero title={t("contact.title")} subtitle={t("contact.subtitle")} />
+
+      <section className="py-20">
+        <div className="container grid md:grid-cols-2 gap-16">
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {[
+              { key: "name", type: "text" },
+              { key: "email", type: "email" },
+              { key: "subject", type: "text" },
+            ].map((f) => (
+              <div key={f.key}>
+                <label className="block text-sm font-medium text-foreground mb-2">{t(`contact.${f.key}`)}</label>
+                <input
+                  type={f.type}
+                  required
+                  value={form[f.key as keyof typeof form]}
+                  onChange={(e) => setForm({ ...form, [f.key]: e.target.value })}
+                  className="w-full px-4 py-3 border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                />
+              </div>
+            ))}
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">{t("contact.message")}</label>
+              <textarea
+                required
+                rows={5}
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                className="w-full px-4 py-3 border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+              />
+            </div>
+            <Button type="submit" size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 w-full sm:w-auto">
+              {t("contact.send")}
+            </Button>
+          </form>
+
+          {/* Info */}
+          <div className="space-y-8">
+            <h2 className="font-heading text-2xl font-bold text-foreground">{t("contact.info")}</h2>
+            <div className="space-y-6">
+              {[
+                { icon: MapPin, label: t("contact.address") },
+                { icon: Phone, label: t("contact.phone") },
+                { icon: Mail, label: t("contact.emailaddr") },
+              ].map((c, i) => (
+                <div key={i} className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center shrink-0">
+                    <c.icon className="w-5 h-5 text-secondary" />
+                  </div>
+                  <p className="text-foreground mt-2">{c.label}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Map placeholder */}
+            <div className="aspect-video bg-card rounded-xl border border-border flex items-center justify-center">
+              <div className="text-center text-muted-foreground">
+                <MapPin className="w-10 h-10 mx-auto mb-2 opacity-30" />
+                <p className="text-sm">Sfax, Tunisie</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+}
