@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useI18n } from "@/lib/i18n";
 import { Mail, Phone, MapPin, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { TunisianTileBackground, GeometricBorder } from "@/components/TunisianPattern";
 import logo from "@/assets/logo.png";
 
 export default function Footer() {
@@ -18,14 +17,8 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-primary text-primary-foreground overflow-hidden">
-      {/* Geometric top border */}
-      <GeometricBorder className="w-full text-primary-foreground" />
-
-      {/* Zellige pattern overlay */}
-      <TunisianTileBackground className="absolute inset-0 w-full h-full text-primary-foreground pointer-events-none" />
-
-      <div className="container relative z-10 py-16">
+    <footer className="bg-primary text-primary-foreground">
+      <div className="container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="space-y-4">
@@ -38,15 +31,6 @@ export default function Footer() {
             <p className="text-sm text-primary-foreground/70 leading-relaxed">
               {t("footer.mission")}
             </p>
-            {/* Social */}
-            <a
-              href="https://www.facebook.com/SalonDuLivrePourEnfants"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"
-            >
-              <Facebook className="w-4 h-4" /> Facebook
-            </a>
           </div>
 
           {/* Links */}
@@ -78,6 +62,12 @@ export default function Footer() {
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 shrink-0" />
                 {t("contact.emailaddr")}
+              </li>
+              <li className="flex items-center gap-2">
+                <Facebook className="w-4 h-4 shrink-0" />
+                <a href="https://www.facebook.com/SalonDuLivrePourEnfants" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition-colors">
+                  Facebook
+                </a>
               </li>
             </ul>
           </div>
