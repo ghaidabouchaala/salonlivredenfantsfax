@@ -63,6 +63,12 @@ export default function Footer() {
                 <Mail className="w-4 h-4 shrink-0" />
                 {t("contact.emailaddr")}
               </li>
+              <li className="flex items-center gap-2">
+                <Facebook className="w-4 h-4 shrink-0" />
+                <a href="https://www.facebook.com/SalonDuLivrePourEnfants" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition-colors">
+                  Facebook
+                </a>
+              </li>
             </ul>
           </div>
 
