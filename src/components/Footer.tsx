@@ -23,7 +23,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <img src={logo} alt="Logo" className="h-12 w-auto bg-primary-foreground rounded-full p-1" />
+              <img src={logo} alt="Logo" className="h-12 w-auto" />
               <span className="font-heading text-sm font-semibold leading-tight">
                 {lang === "fr" ? "Salon du Livre de l'Enfant de Sfax" : "Sfax Children's Book Fair"}
               </span>
