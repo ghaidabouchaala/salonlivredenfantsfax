@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useI18n } from "@/lib/i18n";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
@@ -62,6 +62,12 @@ export default function Footer() {
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 shrink-0" />
                 {t("contact.emailaddr")}
+              </li>
+              <li className="flex items-center gap-2">
+                <Facebook className="w-4 h-4 shrink-0" />
+                <a href="https://www.facebook.com/SalonDuLivrePourEnfants" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition-colors">
+                  Facebook
+                </a>
               </li>
             </ul>
           </div>
