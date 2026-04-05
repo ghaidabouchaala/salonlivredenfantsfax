@@ -101,9 +101,9 @@ const translations: Record<Lang, Record<string, string>> = {
     "contact.message": "Message",
     "contact.send": "Envoyer",
     "contact.info": "Informations de contact",
-    "contact.address": "Sfax, Tunisie",
-    "contact.phone": "+216 74 000 000",
-    "contact.emailaddr": "contact@salonlivreenfant-sfax.tn",
+    "contact.address": "Route Lafrane Km 2, Sfax, Tunisie, 3013",
+    "contact.phone": "+216 74 268 700",
+    "contact.emailaddr": "sfax.livre.enfant@gmail.com",
     // Footer
     "footer.mission": "Promouvoir la lecture et la culture auprès des enfants de Sfax depuis 1995.",
     "footer.newsletter": "Newsletter",
