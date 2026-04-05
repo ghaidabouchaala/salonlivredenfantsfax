@@ -6,40 +6,48 @@
 
 @layer base {
   :root {
-    --background: 40 33% 97%;
+    --background: 38 30% 97%;
     --foreground: 220 30% 15%;
 
-    --card: 40 30% 95%;
+    --card: 38 28% 95%;
     --card-foreground: 220 30% 15%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 220 30% 15%;
 
-    --primary: 215 55% 22%;
-    --primary-foreground: 40 33% 97%;
+    /* Sidi Bou Saïd blue — deep Mediterranean */
+    --primary: 210 60% 24%;
+    --primary-foreground: 38 30% 97%;
 
-    --secondary: 42 95% 52%;
+    /* Tunisian gold — warm amber from the logo crescent */
+    --secondary: 42 92% 50%;
     --secondary-foreground: 220 30% 12%;
 
-    --muted: 40 20% 92%;
+    --muted: 38 18% 92%;
     --muted-foreground: 220 10% 45%;
 
-    --accent: 330 65% 50%;
+    /* Bougainvillea pink — Tunisian gardens */
+    --accent: 335 60% 52%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 40 15% 85%;
-    --input: 40 15% 85%;
-    --ring: 215 55% 22%;
+    --border: 38 15% 85%;
+    --input: 38 15% 85%;
+    --ring: 210 60% 24%;
 
     --radius: 0.5rem;
 
-    --warm: 40 40% 93%;
+    /* Warm sand — Tunisian desert/medina walls */
+    --warm: 36 35% 93%;
     --warm-foreground: 220 30% 15%;
-    --gold: 42 95% 52%;
+    /* Tunisian gold */
+    --gold: 42 92% 50%;
     --gold-foreground: 220 30% 12%;
+    /* Terracotta — Tunisian pottery */
+    --terracotta: 16 65% 52%;
+    --terracotta-foreground: 0 0% 100%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -58,23 +66,25 @@
     --card-foreground: 40 20% 92%;
     --popover: 220 25% 12%;
     --popover-foreground: 40 20% 92%;
-    --primary: 215 55% 55%;
+    --primary: 210 55% 50%;
     --primary-foreground: 0 0% 100%;
     --secondary: 42 90% 48%;
     --secondary-foreground: 220 30% 12%;
     --muted: 220 20% 18%;
-    --muted-foreground: 40 10% 60%;
-    --accent: 330 60% 45%;
+    --muted-foreground: 38 10% 60%;
+    --accent: 335 55% 48%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 220 15% 22%;
     --input: 220 15% 22%;
-    --ring: 215 55% 55%;
+    --ring: 210 55% 50%;
     --warm: 220 20% 14%;
-    --warm-foreground: 40 20% 92%;
-    --gold: 38 65% 45%;
+    --warm-foreground: 38 20% 92%;
+    --gold: 42 85% 45%;
     --gold-foreground: 0 0% 100%;
+    --terracotta: 16 60% 48%;
+    --terracotta-foreground: 0 0% 100%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
