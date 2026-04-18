@@ -13,9 +13,6 @@ const navKeys = [
 
   { key: "nav.events", path: "/events" },
   { key: "nav.blog", path: "/blog" },
-
-  { key: "nav.partners", path: "/partners" },
-  { key: "nav.contact", path: "/contact" },
 ];
 
 export default function Header() {
