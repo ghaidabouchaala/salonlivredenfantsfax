@@ -15,14 +15,30 @@ export default function Partners() {
       <div className="mb-12">
         <h2 className="font-heading text-2xl font-bold text-foreground mb-6">{title}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-          {list.map((p, i) => (
-            <div key={i} className="bg-card rounded-xl border border-border p-6 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-md transition-shadow">
-              <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center">
-                <span className="text-sm font-medium text-muted-foreground">{p.name.substring(0, 2)}</span>
-              </div>
-              <span className="text-xs font-medium text-foreground">{p.name}</span>
-            </div>
-          ))}
+          {list.map((p, i) => {
+            const inner = (
+              <>
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center overflow-hidden">
+                  {p.logo !== "/placeholder.svg" ? (
+                    <img src={p.logo} alt={p.name[lang as 'fr'|'en'|'ar']} className="w-full h-full object-cover mix-blend-multiply p-1" />
+                  ) : (
+                    <span className="text-sm font-medium text-muted-foreground">{p.name[lang as 'fr'|'en'|'ar'].substring(0, 2)}</span>
+                  )}
+                </div>
+                <span className="text-xs font-medium text-foreground">{p.name[lang as 'fr'|'en'|'ar']}</span>
+              </>
+            );
+
+            return p.url ? (
+               <a href={p.url} target="_blank" rel="noopener noreferrer" key={i} className="bg-card rounded-xl border border-border p-6 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-md transition-shadow hover:border-secondary">
+                 {inner}
+               </a>
+            ) : (
+               <div key={i} className="bg-card rounded-xl border border-border p-6 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-md transition-shadow">
+                 {inner}
+               </div>
+            );
+          })}
         </div>
       </div>
     );

@@ -31,7 +31,7 @@ export interface Member {
 }
 
 export interface Partner {
-  name: string;
+  name: { fr: string; en: string; ar: string };
   category: "institutional" | "media" | "sponsor";
   logo: string;
   url?: string;
@@ -133,27 +133,45 @@ export const events: Event[] = [
   },
 ];
 
+import slimAchicheImage from "@/assets/slim-achiche.png";
+import mohsenBouchalaImage from "@/assets/mohsen-bouchaala.png";
+import sarraCharfiImage from "@/assets/sarra-charfi.png";
+import chefyaHdiderImage from "@/assets/chefya-hdider.png";
+
 export const members: Member[] = [
-  { name: "Slim Achiche", role: { fr: "Président", en: "President" }, bio: { fr: "Président de l'association, engagé dans la promotion de la lecture et de la culture pour les enfants de Sfax.", en: "President of the association, committed to promoting reading and culture for the children of Sfax." }, image: "/placeholder.svg", category: "board" },
+  { name: "Slim Achiche", role: { fr: "Président", en: "President" }, bio: { fr: "Président de l'association, engagé dans la promotion de la lecture et de la culture pour les enfants de Sfax.", en: "President of the association, committed to promoting reading and culture for the children of Sfax." }, image: slimAchicheImage, category: "board" },
   { name: "Hamadi Guermazi", role: { fr: "Vice-président", en: "Vice President" }, bio: { fr: "Vice-président de l'association, contribuant activement au développement des activités culturelles.", en: "Vice president of the association, actively contributing to the development of cultural activities." }, image: "/placeholder.svg", category: "board" },
   { name: "Foued Sahnoun", role: { fr: "Secrétaire général", en: "Secretary General" }, bio: { fr: "Secrétaire général de l'association, assurant la coordination et le suivi des activités.", en: "Secretary general of the association, ensuring coordination and follow-up of activities." }, image: "/placeholder.svg", category: "board" },
-  { name: "Sarra Charfi", role: { fr: "Secrétaire générale adjointe", en: "Deputy Secretary General" }, bio: { fr: "Secrétaire générale adjointe, soutenant la gestion administrative de l'association.", en: "Deputy secretary general, supporting the administrative management of the association." }, image: "/placeholder.svg", category: "board" },
-  { name: "Mohsen Bouchaala", role: { fr: "Trésorier", en: "Treasurer" }, bio: { fr: "Trésorier de l'association, veillant à la gestion financière transparente et rigoureuse.", en: "Treasurer of the association, ensuring transparent and rigorous financial management." }, image: "/placeholder.svg", category: "board" },
+  { name: "Sarra Charfi", role: { fr: "Secrétaire générale adjointe", en: "Deputy Secretary General" }, bio: { fr: "Secrétaire générale adjointe, soutenant la gestion administrative de l'association.", en: "Deputy secretary general, supporting the administrative management of the association." }, image: sarraCharfiImage, category: "board" },
+  { name: "Mohsen Bouchaala", role: { fr: "Trésorier", en: "Treasurer" }, bio: { fr: "Trésorier de l'association, veillant à la gestion financière transparente et rigoureuse.", en: "Treasurer of the association, ensuring transparent and rigorous financial management." }, image: mohsenBouchalaImage, category: "board" },
   { name: "Chafik Ghorbel", role: { fr: "Chargé de communication", en: "Communications Officer" }, bio: { fr: "Responsable de la communication et de la visibilité de l'association.", en: "Responsible for the association's communication and visibility." }, image: "/placeholder.svg", category: "committee" },
-  { name: "Chefya Hdider", role: { fr: "Chargée de l'activité culturelle", en: "Cultural Activities Officer" }, bio: { fr: "En charge de la programmation et de l'animation des activités culturelles.", en: "In charge of programming and facilitating cultural activities." }, image: "/placeholder.svg", category: "committee" },
+  { name: "Chefya Hdider", role: { fr: "Chargée de l'activité culturelle", en: "Cultural Activities Officer" }, bio: { fr: "En charge de la programmation et de l'animation des activités culturelles.", en: "In charge of programming and facilitating cultural activities." }, image: chefyaHdiderImage, category: "committee" },
   { name: "Wajdi Atitallah", role: { fr: "Représentant juridique légal", en: "Legal Representative" }, bio: { fr: "Représentant juridique de l'association, assurant le cadre légal de ses activités.", en: "Legal representative of the association, ensuring the legal framework of its activities." }, image: "/placeholder.svg", category: "committee" },
   { name: "Sawssan Amri", role: { fr: "Membre", en: "Member" }, bio: { fr: "Membre active du comité, contribuant aux différentes initiatives de l'association.", en: "Active committee member, contributing to the association's various initiatives." }, image: "/placeholder.svg", category: "committee" },
 ];
 
+import partner1Logo from "@/assets/partner-1.jpg";
+import partner2Logo from "@/assets/partner-2.png";
+
 export const partners: Partner[] = [
-  { name: "Ministère de la Culture", category: "institutional", logo: "/placeholder.svg" },
-  { name: "Municipalité de Sfax", category: "institutional", logo: "/placeholder.svg" },
-  { name: "Institut Français de Tunisie", category: "institutional", logo: "/placeholder.svg" },
-  { name: "UNESCO", category: "institutional", logo: "/placeholder.svg" },
-  { name: "Université de Sfax", category: "institutional", logo: "/placeholder.svg" },
-  { name: "Radio Sfax", category: "media", logo: "/placeholder.svg" },
-  { name: "La Presse de Tunisie", category: "media", logo: "/placeholder.svg" },
-  { name: "Tunisie Télécom", category: "sponsor", logo: "/placeholder.svg" },
-  { name: "Banque de Tunisie", category: "sponsor", logo: "/placeholder.svg" },
-  { name: "Cérès Éditions", category: "sponsor", logo: "/placeholder.svg" },
+  { 
+    name: {
+      fr: "Direction Régionale des Affaires Culturelles de Sfax",
+      en: "Regional Directorate of Cultural Affairs in Sfax",
+      ar: "المندوبية الجهوية للشؤون الثّقافيّة بصفاقس"
+    },
+    category: "institutional", 
+    logo: partner1Logo, 
+    url: "https://www.facebook.com/Culture.SFAX" 
+  },
+  { 
+    name: {
+      fr: "Foire Internationale de Sfax",
+      en: "Sfax International Fair",
+      ar: "معرض صفاقس الدولي"
+    },
+    category: "institutional", 
+    logo: partner2Logo, 
+    url: "https://www.facebook.com/AssociationDeLaFoireInternationaleDeSfax" 
+  },
 ];

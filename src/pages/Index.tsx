@@ -159,14 +159,30 @@ export default function Index() {
         <div className="container">
           <h2 className="font-heading text-2xl font-bold text-foreground text-center mb-8">{t("partners.title")}</h2>
           <div className="flex flex-wrap justify-center gap-8 items-center opacity-60">
-            {partners.slice(0, 6).map((p, i) => (
-              <div key={i} className="text-center">
-                <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-2">
-                  <span className="text-xs font-medium text-muted-foreground">{p.name.substring(0, 2)}</span>
+            {partners.slice(0, 6).map((p, i) => {
+              const inner = (
+                <div className="text-center group-hover:scale-105 transition-transform duration-300">
+                  <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-2 group-hover:bg-secondary/10 transition-colors overflow-hidden bg-white">
+                    {p.logo !== "/placeholder.svg" ? (
+                      <img src={p.logo} alt={p.name[lang as 'fr'|'en'|'ar']} className="w-full h-full object-cover mix-blend-multiply" />
+                    ) : (
+                      <span className="text-xs font-medium text-muted-foreground">{p.name[lang as 'fr'|'en'|'ar'].substring(0, 2)}</span>
+                    )}
+                  </div>
+                  <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">{p.name[lang as 'fr'|'en'|'ar']}</span>
                 </div>
-                <span className="text-xs text-muted-foreground">{p.name}</span>
-              </div>
-            ))}
+              );
+
+              return p.url ? (
+                <a key={i} href={p.url} target="_blank" rel="noopener noreferrer" className="block group hover:opacity-100 transition-opacity">
+                  {inner}
+                </a>
+              ) : (
+                <div key={i} className="block group transition-opacity">
+                  {inner}
+                </div>
+              );
+            })}
           </div>
           <div className="text-center mt-8">
             <Link to="/partners">

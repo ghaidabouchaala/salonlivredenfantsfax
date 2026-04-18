@@ -14,11 +14,15 @@ export default function About() {
   const renderSection = (title: string, list: typeof members) => (
     <div className="mb-16">
       <h2 className="font-heading text-2xl font-bold text-foreground mb-8 text-center">{title}</h2>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
         {list.map((m, i) => (
           <div key={i} className="bg-card rounded-xl border border-border p-6 text-center space-y-4 hover:shadow-md transition-shadow">
-            <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center mx-auto">
-              <User className="w-10 h-10 text-muted-foreground/40" />
+            <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center mx-auto overflow-hidden">
+              {m.image !== "/placeholder.svg" ? (
+                <img src={m.image} alt={m.name} className="w-full h-full object-cover" />
+              ) : (
+                <User className="w-10 h-10 text-muted-foreground/40" />
+              )}
             </div>
             <div>
               <h3 className="font-heading text-lg font-semibold text-foreground">{m.name}</h3>
