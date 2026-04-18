@@ -21,7 +21,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "nav.support": "Nous soutenir",
     "nav.contact": "Contact",
     // Hero
-    "hero.title": "Où les livres rencontrent l'imagination des enfants",
+    "hero.title": "Les esprits qui dirigent sont ceux qui lisent",
     "hero.subtitle": "Depuis 1995, nous promouvons la lecture, la créativité et la culture auprès des enfants de Sfax et de toute la Tunisie.",
     "hero.cta1": "Découvrir nos activités",
     "hero.cta2": "Soutenir l'association",
@@ -137,7 +137,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "nav.partners": "Partners",
     "nav.support": "Support Us",
     "nav.contact": "Contact",
-    "hero.title": "Where books meet children's imagination",
+    "hero.title": "Leaders are readers",
     "hero.subtitle": "Since 1995, we promote reading, creativity, and culture for children in Sfax and across Tunisia.",
     "hero.cta1": "Discover our activities",
     "hero.cta2": "Support the association",
