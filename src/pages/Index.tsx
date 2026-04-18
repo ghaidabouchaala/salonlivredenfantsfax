@@ -15,8 +15,17 @@ export default function Index() {
     <Layout>
       {/* Hero */}
       <section className="relative overflow-hidden bg-warm text-foreground">
-        <div className="container relative z-10 py-20 md:py-32 grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6 animate-fade-in">
+        {/* Full-width illustration as background */}
+        <div
+          className="absolute inset-0 bg-no-repeat bg-right bg-contain md:bg-cover lg:bg-contain mix-blend-multiply opacity-90"
+          style={{ backgroundImage: `url(${heroImage})` }}
+          aria-hidden="true"
+        />
+        {/* Soft fade so text on the left stays legible */}
+        <div className="absolute inset-0 bg-gradient-to-r from-warm via-warm/85 to-transparent md:from-warm md:via-warm/70 md:to-transparent" aria-hidden="true" />
+
+        <div className="container relative z-10 py-24 md:py-36 lg:py-44 grid md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6 animate-fade-in max-w-xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/15 text-secondary text-sm font-medium">
               <BookOpen className="w-4 h-4" />
               30+ {t("hero.years")}
@@ -41,13 +50,8 @@ export default function Index() {
               </Link>
             </div>
           </div>
-          <div className="relative animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            <img
-              src={heroImage}
-              alt="Child reading a book on a crescent moon among clouds"
-              className="w-full h-auto object-contain mix-blend-multiply"
-            />
-          </div>
+          {/* Right column intentionally empty — illustration shows through */}
+          <div aria-hidden="true" />
         </div>
       </section>
 
