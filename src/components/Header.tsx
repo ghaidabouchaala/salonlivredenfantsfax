@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useI18n } from "@/lib/i18n";
+
+const langCycle = { fr: "en", en: "ar", ar: "fr" } as const;
+const langLabel = { fr: "EN", en: "ع", ar: "FR" } as const;
 import { Menu, X, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
@@ -27,7 +30,11 @@ export default function Header() {
         <Link to="/" className="flex items-center gap-3">
           <img src={logo} alt="Logo" className="h-12 md:h-14 w-auto" />
           <span className="hidden lg:block font-heading text-sm font-semibold text-foreground leading-tight max-w-[200px]">
-            {lang === "fr" ? "Salon du Livre de l'Enfant de Sfax" : "Sfax Children's Book Fair"}
+            {lang === "fr"
+              ? "Salon du Livre de l'Enfant de Sfax"
+              : lang === "ar"
+              ? "معرض كتاب الطفل بصفاقس"
+              : "Sfax Children's Book Fair"}
           </span>
         </Link>
 
@@ -48,11 +55,12 @@ export default function Header() {
 
         <div className="hidden lg:flex items-center gap-2">
           <button
-            onClick={() => setLang(lang === "fr" ? "en" : "fr")}
+            onClick={() => setLang(langCycle[lang])}
             className="flex items-center gap-1 px-2 py-1 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Change language"
           >
             <Globe className="w-4 h-4" />
-            {lang === "fr" ? "EN" : "FR"}
+            {langLabel[lang]}
           </button>
           <Link to="/contact">
             <Button variant="outline" size="sm">{t("nav.contact")}</Button>
@@ -65,10 +73,12 @@ export default function Header() {
         {/* Mobile toggle */}
         <div className="flex lg:hidden items-center gap-2">
           <button
-            onClick={() => setLang(lang === "fr" ? "en" : "fr")}
-            className="p-2 text-muted-foreground hover:text-foreground"
+            onClick={() => setLang(langCycle[lang])}
+            className="flex items-center gap-1 p-2 text-muted-foreground hover:text-foreground"
+            aria-label="Change language"
           >
             <Globe className="w-5 h-5" />
+            <span className="text-xs font-medium">{langLabel[lang]}</span>
           </button>
           <button onClick={() => setOpen(!open)} className="p-2 text-foreground">
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
