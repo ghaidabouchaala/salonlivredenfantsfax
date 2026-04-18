@@ -137,6 +137,8 @@ import slimAchicheImage from "@/assets/slim-achiche.png";
 import mohsenBouchalaImage from "@/assets/mohsen-bouchaala.png";
 import sarraCharfiImage from "@/assets/sarra-charfi.png";
 import chefyaHdiderImage from "@/assets/chefya-hdider.png";
+import wajdiAtitallahImage from "@/assets/wajdi-atitallah.png";
+import chafikGhorbelImage from "@/assets/chafik-ghorbel.jpg";
 
 export const members: Member[] = [
   { name: "Slim Achiche", role: { fr: "Président", en: "President" }, bio: { fr: "Président de l'association, engagé dans la promotion de la lecture et de la culture pour les enfants de Sfax.", en: "President of the association, committed to promoting reading and culture for the children of Sfax." }, image: slimAchicheImage, category: "board" },
@@ -144,9 +146,9 @@ export const members: Member[] = [
   { name: "Foued Sahnoun", role: { fr: "Secrétaire général", en: "Secretary General" }, bio: { fr: "Secrétaire général de l'association, assurant la coordination et le suivi des activités.", en: "Secretary general of the association, ensuring coordination and follow-up of activities." }, image: "/placeholder.svg", category: "board" },
   { name: "Sarra Charfi", role: { fr: "Secrétaire générale adjointe", en: "Deputy Secretary General" }, bio: { fr: "Secrétaire générale adjointe, soutenant la gestion administrative de l'association.", en: "Deputy secretary general, supporting the administrative management of the association." }, image: sarraCharfiImage, category: "board" },
   { name: "Mohsen Bouchaala", role: { fr: "Trésorier", en: "Treasurer" }, bio: { fr: "Trésorier de l'association, veillant à la gestion financière transparente et rigoureuse.", en: "Treasurer of the association, ensuring transparent and rigorous financial management." }, image: mohsenBouchalaImage, category: "board" },
-  { name: "Chafik Ghorbel", role: { fr: "Chargé de communication", en: "Communications Officer" }, bio: { fr: "Responsable de la communication et de la visibilité de l'association.", en: "Responsible for the association's communication and visibility." }, image: "/placeholder.svg", category: "committee" },
+  { name: "Chafik Ghorbel", role: { fr: "Chargé de communication", en: "Communications Officer" }, bio: { fr: "Responsable de la communication et de la visibilité de l'association.", en: "Responsible for the association's communication and visibility." }, image: chafikGhorbelImage, category: "committee" },
   { name: "Chefya Hdider", role: { fr: "Chargée de l'activité culturelle", en: "Cultural Activities Officer" }, bio: { fr: "En charge de la programmation et de l'animation des activités culturelles.", en: "In charge of programming and facilitating cultural activities." }, image: chefyaHdiderImage, category: "committee" },
-  { name: "Wajdi Atitallah", role: { fr: "Représentant juridique légal", en: "Legal Representative" }, bio: { fr: "Représentant juridique de l'association, assurant le cadre légal de ses activités.", en: "Legal representative of the association, ensuring the legal framework of its activities." }, image: "/placeholder.svg", category: "committee" },
+  { name: "Wajdi Atitallah", role: { fr: "Représentant juridique légal", en: "Legal Representative" }, bio: { fr: "Représentant juridique de l'association, assurant le cadre légal de ses activités.", en: "Legal representative of the association, ensuring the legal framework of its activities." }, image: wajdiAtitallahImage, category: "committee" },
   { name: "Sawssan Amri", role: { fr: "Membre", en: "Member" }, bio: { fr: "Membre active du comité, contribuant aux différentes initiatives de l'association.", en: "Active committee member, contributing to the association's various initiatives." }, image: "/placeholder.svg", category: "committee" },
 ];
 
