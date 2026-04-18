@@ -4,7 +4,9 @@ import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Users, Calendar, Award, ArrowRight, Heart } from "lucide-react";
 import { blogPosts, events, partners } from "@/lib/data";
-import heroImage from "@/assets/hero-moon-reader.png";
+import heroImage from "@/assets/hero-new.jpg";
+import heroArabicImage from "@/assets/hero-arabic.jpg";
+import featuredEventImage from "@/assets/featured-event.jpg";
 
 export default function Index() {
   const { t, lang } = useI18n();
@@ -17,12 +19,12 @@ export default function Index() {
       <section className="relative overflow-hidden bg-warm text-foreground">
         {/* Full-width illustration as background */}
         <div
-          className="absolute inset-0 bg-no-repeat bg-right bg-contain md:bg-cover lg:bg-contain mix-blend-multiply opacity-90"
-          style={{ backgroundImage: `url(${heroImage})` }}
+          className="absolute inset-0 bg-no-repeat bg-right rtl:bg-left bg-contain md:bg-cover lg:bg-contain mix-blend-multiply opacity-90"
+          style={{ backgroundImage: `url(${lang === "ar" ? heroArabicImage : heroImage})` }}
           aria-hidden="true"
         />
         {/* Soft fade so text on the left stays legible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-warm via-warm/85 to-transparent md:from-warm md:via-warm/70 md:to-transparent" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-warm via-warm/85 to-transparent md:from-warm md:via-warm/70 md:to-transparent" aria-hidden="true" />
 
         <div className="container relative z-10 py-24 md:py-36 lg:py-44 grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in max-w-xl">
@@ -37,12 +39,7 @@ export default function Index() {
               {t("hero.subtitle")}
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link to="/activities">
-                <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
-                  {t("hero.cta1")}
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
+
               <Link to="/support">
                 <Button size="lg" variant="outline" className="border-primary/30 text-primary hover:bg-primary/5 bg-transparent">
                   {t("hero.cta2")}
@@ -61,17 +58,19 @@ export default function Index() {
           <div className="space-y-6">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">{t("about.preview.title")}</h2>
             <p className="text-muted-foreground leading-relaxed text-lg">{t("about.preview.text")}</p>
-            <Link to="/about">
-              <Button variant="outline" className="group">
-                {t("about.preview.cta")}
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+            <div className="pt-4">
+              <Link to="/about">
+                <Button variant="outline" className="group">
+                  {t("about.preview.cta")}
+                  <ArrowRight className="w-4 h-4 ms-2 rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
             {[
               { icon: Calendar, num: "30+", label: t("impact.years") },
-              { icon: Users, num: "20 000+", label: t("impact.children") },
+              { icon: Users, num: "500 000+", label: t("impact.children") },
               { icon: Award, num: "200+", label: t("impact.authors") },
               { icon: BookOpen, num: "500+", label: t("impact.events") },
             ].map((item, i) => (
@@ -85,66 +84,42 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Activities preview */}
-      <section className="py-20 md:py-28">
-        <div className="container">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground text-center mb-4">{t("activities.title")}</h2>
-          <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-            {lang === "fr"
-              ? "Découvrez les différentes facettes de notre engagement culturel."
-              : "Discover the different facets of our cultural engagement."}
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: BookOpen, title: t("activities.fair"), desc: t("activities.fair.desc") },
-              { icon: Users, title: t("activities.workshops"), desc: t("activities.workshops.desc") },
-              { icon: Calendar, title: t("activities.cultural"), desc: t("activities.cultural.desc") },
-              { icon: Award, title: t("activities.education"), desc: t("activities.education.desc") },
-            ].map((a, i) => (
-              <div key={i} className="bg-card rounded-xl p-6 space-y-3 hover:shadow-md transition-shadow border border-border">
-                <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center">
-                  <a.icon className="w-6 h-6 text-secondary" />
-                </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground">{a.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{a.desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <Link to="/activities">
-              <Button variant="outline">{t("general.seemore")} <ArrowRight className="w-4 h-4 ml-2" /></Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+
 
       {/* Featured event */}
-      {featuredEvent && (
-        <section className="py-20 md:py-28 bg-warm">
-          <div className="container">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
-              {t("events.featured")}
-            </h2>
-            <div className="bg-background rounded-2xl overflow-hidden shadow-lg border border-border grid md:grid-cols-2">
-              <div className="bg-primary/5 p-8 md:p-12 flex flex-col justify-center space-y-4">
-                <span className="text-sm font-medium text-secondary">{featuredEvent.date}</span>
-                <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground">
-                  {featuredEvent.title[lang]}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">{featuredEvent.description[lang]}</p>
-                <Link to={`/events/${featuredEvent.id}`}>
+      <section className="py-20 md:py-28 bg-warm">
+        <div className="container">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
+            {t("events.featured")}
+          </h2>
+          <div className="bg-background rounded-2xl overflow-hidden shadow-lg border border-border grid md:grid-cols-2">
+            <div className="p-8 md:p-12 flex flex-col justify-center space-y-4">
+              <span className="text-sm font-medium text-secondary">
+                {{ fr: "Du 23 au 30 Mars 2026", en: "March 23–30, 2026", ar: "من 23 إلى 30 مارس 2026" }[lang]}
+              </span>
+              <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground">
+                {{ fr: "Salon du Livre de l'Enfant de Sfax", en: "Sfax Children's Book Fair", ar: "معرض صفاقس لكتاب الطفل" }[lang]}
+              </h3>
+              <p className="text-foreground font-medium text-lg">
+                {{ fr: "31ème Édition", en: "31st Edition", ar: "الدورة 31" }[lang]}
+              </p>
+              <p className="text-muted-foreground leading-relaxed flex items-center gap-2">
+                {{ fr: "Foire de Sfax", en: "Sfax Exhibition Center", ar: "قصر المعارض بصفاقس" }[lang]}
+              </p>
+              <div className="pt-4">
+                <Link to="/events">
                   <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
-                    {t("events.learnmore")} <ArrowRight className="w-4 h-4 ml-2" />
+                    {t("events.learnmore")} <ArrowRight className="w-4 h-4 ms-2 rtl:rotate-180" />
                   </Button>
                 </Link>
               </div>
-              <div className="aspect-video md:aspect-auto bg-muted flex items-center justify-center">
-                <BookOpen className="w-16 h-16 text-muted-foreground/30" />
-              </div>
+            </div>
+            <div className="relative aspect-square md:aspect-auto bg-muted">
+              <img src={featuredEventImage} alt="Sfax Children's Book Fair 31st Edition" className="absolute inset-0 w-full h-full object-cover" />
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* Latest blog posts */}
       <section className="py-20 md:py-28">
@@ -173,7 +148,7 @@ export default function Index() {
           </div>
           <div className="text-center mt-10">
             <Link to="/blog">
-              <Button variant="outline">{t("general.seemore")} <ArrowRight className="w-4 h-4 ml-2" /></Button>
+              <Button variant="outline">{t("general.seemore")} <ArrowRight className="w-4 h-4 ms-2 rtl:rotate-180" /></Button>
             </Link>
           </div>
         </div>
@@ -195,7 +170,7 @@ export default function Index() {
           </div>
           <div className="text-center mt-8">
             <Link to="/partners">
-              <Button variant="ghost" size="sm">{t("general.seemore")} <ArrowRight className="w-4 h-4 ml-2" /></Button>
+              <Button variant="ghost" size="sm">{t("general.seemore")} <ArrowRight className="w-4 h-4 ms-2 rtl:rotate-180" /></Button>
             </Link>
           </div>
         </div>
@@ -207,11 +182,13 @@ export default function Index() {
           <Heart className="w-12 h-12 mx-auto opacity-80" />
           <h2 className="font-heading text-3xl md:text-4xl font-bold">{t("donation.title")}</h2>
           <p className="text-lg text-secondary-foreground/80 leading-relaxed">{t("donation.text")}</p>
-          <Link to="/support">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-              {t("donation.cta")} <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </Link>
+          <div className="pt-4">
+            <Link to="/support">
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                {t("donation.cta")} <ArrowRight className="w-4 h-4 ms-2 rtl:rotate-180" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </Layout>

@@ -74,12 +74,16 @@ export default function Contact() {
               ))}
             </div>
 
-            {/* Map placeholder */}
-            <div className="aspect-video bg-card rounded-xl border border-border flex items-center justify-center">
-              <div className="text-center text-muted-foreground">
-                <MapPin className="w-10 h-10 mx-auto mb-2 opacity-30" />
-                <p className="text-sm">Sfax, Tunisie</p>
-              </div>
+            {/* Map */}
+            <div className="aspect-video bg-card rounded-xl border border-border overflow-hidden shadow-sm">
+              <iframe
+                title="Map to Foire Internationale de Sfax"
+                src="https://maps.google.com/maps?q=Foire+Internationale+de+Sfax,+Sfax,+Tunisia&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                className="w-full h-full border-0"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
         </div>

@@ -9,12 +9,11 @@ import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
 const navKeys = [
-  { key: "nav.home", path: "/" },
   { key: "nav.about", path: "/about" },
-  { key: "nav.activities", path: "/activities" },
+
   { key: "nav.events", path: "/events" },
   { key: "nav.blog", path: "/blog" },
-  { key: "nav.members", path: "/members" },
+
   { key: "nav.partners", path: "/partners" },
   { key: "nav.contact", path: "/contact" },
 ];
@@ -25,10 +24,10 @@ export default function Header() {
   const location = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
+    <header className="sticky top-0 z-50 bg-background border-b border-border">
       <div className="container flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="Logo" className="h-12 md:h-14 w-auto" />
+          <img src={logo} alt="Logo" className="h-12 md:h-14 w-auto mix-blend-multiply" />
           <span className="hidden lg:block font-heading text-sm font-semibold text-foreground leading-tight max-w-[200px]">
             {lang === "fr"
               ? "Salon du Livre de l'Enfant de Sfax"

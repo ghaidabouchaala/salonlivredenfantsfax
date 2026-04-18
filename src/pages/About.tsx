@@ -1,21 +1,35 @@
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import { useI18n } from "@/lib/i18n";
-import { BookOpen, Heart, Users, Lightbulb, Eye, Target } from "lucide-react";
+import { members } from "@/lib/data";
+import { BookOpen, Heart, Users, Lightbulb, Eye, Target, User } from "lucide-react";
 
-const timeline = [
-  { year: "1995", fr: "Fondation de l'association", en: "Association founded" },
-  { year: "1996", fr: "Premier Salon du Livre de l'Enfant", en: "First Children's Book Fair" },
-  { year: "2000", fr: "Premiers partenariats internationaux", en: "First international partnerships" },
-  { year: "2005", fr: "10ème édition — 5 000 visiteurs", en: "10th edition — 5,000 visitors" },
-  { year: "2010", fr: "Lancement des ateliers permanents", en: "Launch of permanent workshops" },
-  { year: "2015", fr: "20ème anniversaire — 10 000 visiteurs", en: "20th anniversary — 10,000 visitors" },
-  { year: "2020", fr: "Première édition numérique pendant la pandémie", en: "First digital edition during pandemic" },
-  { year: "2025", fr: "30ème anniversaire — 20 000 visiteurs", en: "30th anniversary — 20,000 visitors" },
-];
 
 export default function About() {
   const { t, lang } = useI18n();
+
+  const board = members.filter((m) => m.category === "board");
+  const committee = members.filter((m) => m.category === "committee");
+
+  const renderSection = (title: string, list: typeof members) => (
+    <div className="mb-16">
+      <h2 className="font-heading text-2xl font-bold text-foreground mb-8 text-center">{title}</h2>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {list.map((m, i) => (
+          <div key={i} className="bg-card rounded-xl border border-border p-6 text-center space-y-4 hover:shadow-md transition-shadow">
+            <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center mx-auto">
+              <User className="w-10 h-10 text-muted-foreground/40" />
+            </div>
+            <div>
+              <h3 className="font-heading text-lg font-semibold text-foreground">{m.name}</h3>
+              <p className="text-sm font-medium text-secondary">{m.role[lang]}</p>
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">{m.bio[lang]}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <Layout>
@@ -71,24 +85,14 @@ export default function About() {
         </div>
       </section>
 
-      {/* Timeline */}
+
+
+      {/* Members */}
       <section className="py-20">
-        <div className="container max-w-2xl">
-          <h2 className="font-heading text-3xl font-bold text-foreground text-center mb-12">{t("about.timeline")}</h2>
-          <div className="space-y-0">
-            {timeline.map((item, i) => (
-              <div key={i} className="flex gap-6 group">
-                <div className="flex flex-col items-center">
-                  <div className="w-3 h-3 rounded-full bg-secondary shrink-0 mt-2" />
-                  {i < timeline.length - 1 && <div className="w-px flex-1 bg-border" />}
-                </div>
-                <div className="pb-8">
-                  <span className="font-heading text-lg font-bold text-secondary">{item.year}</span>
-                  <p className="text-muted-foreground">{item[lang]}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="container">
+          <h2 className="font-heading text-3xl font-bold text-foreground text-center mb-12">{t("members.title")}</h2>
+          {renderSection(t("members.board"), board)}
+          {renderSection(t("members.committee"), committee)}
         </div>
       </section>
 
