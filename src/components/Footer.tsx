@@ -70,22 +70,6 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h4 className="font-heading text-sm font-semibold mb-4">{t("footer.newsletter")}</h4>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder={t("footer.newsletter.placeholder")}
-                className="flex-1 px-3 py-2 text-sm bg-primary-foreground/10 border border-primary-foreground/20 rounded-md text-primary-foreground placeholder:text-primary-foreground/40 focus:outline-none focus:ring-1 focus:ring-primary-foreground/30"
-              />
-              <Button size="sm" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 shrink-0">
-                {t("footer.newsletter.cta")}
-              </Button>
-            </div>
-          </div>
         </div>
 
         <div className="mt-12 pt-8 border-t border-primary-foreground/10 text-center text-xs text-primary-foreground/50">
