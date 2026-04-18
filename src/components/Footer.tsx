@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useI18n } from "@/lib/i18n";
 import { Mail, Phone, MapPin, Facebook } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
 export default function Footer() {
