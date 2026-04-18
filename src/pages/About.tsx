@@ -46,7 +46,7 @@ export default function About() {
       />
 
       {/* History */}
-      <section className="py-20">
+      <section className="py-20 bg-warm">
         <div className="container max-w-3xl">
           <h2 className="font-heading text-3xl font-bold text-foreground mb-6">{t("about.history")}</h2>
           <div className="prose prose-lg text-muted-foreground space-y-4">
@@ -63,6 +63,15 @@ export default function About() {
               }
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Members */}
+      <section className="py-20 bg-background">
+        <div className="container">
+          <h2 className="font-heading text-3xl font-bold text-foreground text-center mb-12">{t("members.title")}</h2>
+          {renderSection(t("members.board"), board)}
+          {renderSection(t("members.committee"), committee)}
         </div>
       </section>
 
@@ -86,17 +95,6 @@ export default function About() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-
-
-      {/* Members */}
-      <section className="py-20">
-        <div className="container">
-          <h2 className="font-heading text-3xl font-bold text-foreground text-center mb-12">{t("members.title")}</h2>
-          {renderSection(t("members.board"), board)}
-          {renderSection(t("members.committee"), committee)}
         </div>
       </section>
 
