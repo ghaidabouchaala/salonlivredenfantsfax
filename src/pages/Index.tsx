@@ -4,7 +4,7 @@ import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Users, Calendar, Award, ArrowRight, Heart } from "lucide-react";
 import { blogPosts, events, partners } from "@/lib/data";
-import heroImage from "@/assets/hero-books.jpg";
+import heroImage from "@/assets/hero-moon-reader.png";
 
 export default function Index() {
   const { t, lang } = useI18n();
@@ -14,17 +14,17 @@ export default function Index() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-primary text-primary-foreground">
+      <section className="relative overflow-hidden bg-warm text-foreground">
         <div className="container relative z-10 py-20 md:py-32 grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/20 text-secondary text-sm font-medium">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/15 text-secondary text-sm font-medium">
               <BookOpen className="w-4 h-4" />
               30+ {t("hero.years")}
             </div>
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance text-primary">
               {t("hero.title")}
             </h1>
-            <p className="text-lg text-primary-foreground/70 max-w-lg leading-relaxed">
+            <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
               {t("hero.subtitle")}
             </p>
             <div className="flex flex-wrap gap-3">
@@ -35,16 +35,18 @@ export default function Index() {
                 </Button>
               </Link>
               <Link to="/support">
-                <Button size="lg" variant="outline" className="border-primary-foreground/50 text-primary-foreground hover:bg-primary-foreground/10 bg-transparent">
+                <Button size="lg" variant="outline" className="border-primary/30 text-primary hover:bg-primary/5 bg-transparent">
                   {t("hero.cta2")}
                 </Button>
               </Link>
             </div>
           </div>
           <div className="relative animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img src={heroImage} alt="Children reading books" className="w-full h-auto object-cover" />
-            </div>
+            <img
+              src={heroImage}
+              alt="Child reading a book on a crescent moon among clouds"
+              className="w-full h-auto object-contain mix-blend-multiply"
+            />
           </div>
         </div>
       </section>
