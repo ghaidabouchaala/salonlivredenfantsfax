@@ -1,11 +1,12 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-type Lang = "fr" | "en";
+type Lang = "fr" | "en" | "ar";
 
 interface I18nContextType {
   lang: Lang;
   setLang: (l: Lang) => void;
   t: (key: string) => string;
+  dir: "ltr" | "rtl";
 }
 
 const translations: Record<Lang, Record<string, string>> = {
@@ -230,19 +231,145 @@ const translations: Record<Lang, Record<string, string>> = {
     "donation.text": "Your generosity provides books, workshops, and moments of cultural discovery for thousands of children each year.",
     "donation.cta": "Donate",
   },
+  ar: {
+    // Nav
+    "nav.home": "الرئيسية",
+    "nav.about": "من نحن",
+    "nav.activities": "الأنشطة",
+    "nav.events": "الفعاليات",
+    "nav.blog": "المدونة",
+    "nav.members": "الأعضاء",
+    "nav.partners": "الشركاء",
+    "nav.support": "ادعمنا",
+    "nav.contact": "اتصل بنا",
+    // Hero
+    "hero.title": "العقول التي تقود هي العقول التي تقرأ",
+    "hero.subtitle": "منذ عام 1995، نعمل على تعزيز القراءة والإبداع والثقافة لدى الأطفال في صفاقس وجميع أنحاء تونس.",
+    "hero.cta1": "اكتشف أنشطتنا",
+    "hero.cta2": "ادعم الجمعية",
+    "hero.years": "سنة من الالتزام الثقافي",
+    // About preview
+    "about.preview.title": "مهمتنا",
+    "about.preview.text": "تأسست جمعية معرض كتاب الطفل بصفاقس سنة 1995، وهي منظمة ثقافية غير ربحية مكرّسة لتعزيز القراءة والإبداع لدى الأطفال. من خلال معارض الكتب وورش العمل والبرامج التربوية، نخلق فضاءات يزدهر فيها الخيال.",
+    "about.preview.cta": "اعرف المزيد",
+    // Impact
+    "impact.title": "أثرنا",
+    "impact.years": "سنوات من النشاط",
+    "impact.children": "طفل تم الوصول إليهم",
+    "impact.authors": "كاتب استضفناهم",
+    "impact.events": "فعالية منظمة",
+    // Activities
+    "activities.title": "أنشطتنا",
+    "activities.fair": "معرض كتاب الطفل",
+    "activities.fair.desc": "حدثنا السنوي البارز الذي يجمع المؤلفين والناشرين والقراء الصغار في احتفاء بأدب الطفل.",
+    "activities.workshops": "ورش القراءة",
+    "activities.workshops.desc": "جلسات تفاعلية يقودها مؤلفون ومربون لتنمية حب القراءة لدى الأطفال.",
+    "activities.cultural": "فعاليات ثقافية",
+    "activities.cultural.desc": "عروض ومعارض ولقاءات تحتفي بثراء ثقافة الطفل وخياله.",
+    "activities.education": "برامج تربوية",
+    "activities.education.desc": "شراكات مع المدارس والمؤسسات لإدماج القراءة في المسار التربوي للأطفال.",
+    // Events
+    "events.title": "الفعاليات",
+    "events.featured": "فعالية مميزة",
+    "events.upcoming": "قادمة",
+    "events.past": "سابقة",
+    "events.all": "الكل",
+    "events.learnmore": "اعرف المزيد",
+    // Blog
+    "blog.title": "أخبار ومقالات",
+    "blog.readmore": "اقرأ المزيد",
+    "blog.search": "بحث...",
+    "blog.all": "الكل",
+    "blog.news": "أخبار",
+    "blog.events": "فعاليات",
+    "blog.reading": "قراءة",
+    "blog.youth": "ثقافة الطفل",
+    "blog.life": "حياة الجمعية",
+    "blog.latest": "أحدث المقالات",
+    "blog.back": "→ العودة إلى المدونة",
+    "blog.share": "مشاركة",
+    "blog.related": "مقالات ذات صلة",
+    // Members
+    "members.title": "أعضاؤنا",
+    "members.board": "المكتب التنفيذي",
+    "members.committee": "اللجنة المنظمة",
+    "members.volunteers": "المتطوعون",
+    // Partners
+    "partners.title": "شركاؤنا",
+    "partners.subtitle": "تعاونات قيّمة تجعل مهمتنا ممكنة.",
+    "partners.institutional": "شركاء مؤسساتيون",
+    "partners.media": "شركاء إعلاميون",
+    "partners.sponsors": "الرعاة",
+    "partners.become": "كن شريكًا",
+    "partners.benefits": "مزايا الشراكة",
+    "partners.cta": "اتصل بنا",
+    // Support
+    "support.title": "ادعمنا",
+    "support.why": "لماذا تدعمنا؟",
+    "support.why.text": "يتيح لنا دعمكم مواصلة تعزيز القراءة والثقافة لدى الأطفال. كل مساهمة تُحدث فرقًا.",
+    "support.donate": "تبرّع",
+    "support.sponsor": "كن راعيًا",
+    "support.volunteer": "كن متطوعًا",
+    "support.donate.desc": "ادعم مباشرة برامج القراءة والفعاليات الثقافية للأطفال.",
+    "support.sponsor.desc": "اربط علامتك التجارية بقضية ثقافية واستفد من ظهور واسع لدى مجتمعنا.",
+    "support.volunteer.desc": "انضم إلى فريق المتطوعين وشارك بفاعلية في فعالياتنا وورشنا.",
+    "support.contact": "اتصل بنا",
+    // Contact
+    "contact.title": "اتصل بنا",
+    "contact.subtitle": "يسعدنا التواصل معك. لا تتردد في مراسلتنا لأي سؤال أو اقتراح.",
+    "contact.name": "الاسم الكامل",
+    "contact.email": "البريد الإلكتروني",
+    "contact.subject": "الموضوع",
+    "contact.message": "الرسالة",
+    "contact.send": "إرسال",
+    "contact.info": "معلومات الاتصال",
+    "contact.address": "طريق العفران كم 2، صفاقس، تونس، 3013",
+    "contact.phone": "+216 74 268 700",
+    "contact.emailaddr": "sfax.livre.enfant@gmail.com",
+    // Footer
+    "footer.mission": "تعزيز القراءة والثقافة لدى أطفال صفاقس منذ عام 1995.",
+    "footer.newsletter": "النشرة الإخبارية",
+    "footer.newsletter.placeholder": "بريدك الإلكتروني",
+    "footer.newsletter.cta": "اشترك",
+    "footer.rights": "جميع الحقوق محفوظة.",
+    "footer.links": "روابط سريعة",
+    "footer.contact": "اتصل بنا",
+    // About
+    "about.title": "من نحن",
+    "about.history": "تاريخنا",
+    "about.mission": "مهمتنا",
+    "about.values": "قيمنا",
+    "about.vision": "رؤيتنا",
+    "about.timeline": "محطات بارزة",
+    // General
+    "general.learnmore": "اعرف المزيد",
+    "general.seemore": "عرض المزيد",
+    // Donation CTA
+    "donation.title": "ادعم القراءة للأطفال",
+    "donation.text": "يتيح كرمكم تقديم الكتب وورش العمل ولحظات الاكتشاف الثقافي لآلاف الأطفال كل سنة.",
+    "donation.cta": "تبرّع",
+  },
 };
 
 const I18nContext = createContext<I18nContextType>({
   lang: "fr",
   setLang: () => {},
   t: (key) => key,
+  dir: "ltr",
 });
 
 export const I18nProvider = ({ children }: { children: ReactNode }) => {
   const [lang, setLang] = useState<Lang>("fr");
+  const dir: "ltr" | "rtl" = lang === "ar" ? "rtl" : "ltr";
   const t = (key: string) => translations[lang][key] || key;
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = dir;
+  }, [lang, dir]);
+
   return (
-    <I18nContext.Provider value={{ lang, setLang, t }}>
+    <I18nContext.Provider value={{ lang, setLang, t, dir }}>
       {children}
     </I18nContext.Provider>
   );
