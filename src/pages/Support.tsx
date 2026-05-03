@@ -10,7 +10,14 @@ export default function Support() {
 
   return (
     <Layout>
-      <PageHero title={t("support.title")} />
+      <PageHero 
+        title={t("support.title")} 
+        subtitle={{ 
+          fr: "Votre soutien permet de pérenniser nos actions et de promouvoir la lecture auprès des enfants.", 
+          en: "Your support helps sustain our actions and promote reading among children.", 
+          ar: "دعمكم يساهم في استدامة أنشطتنا وتعزيز ثقافة القراءة لدى الأطفال." 
+        }[lang as 'fr'|'en'|'ar']}
+      />
 
       {/* Why support */}
       <section className="py-20">
@@ -35,11 +42,11 @@ export default function Support() {
               { icon: Building, title: t("support.sponsor"), desc: t("support.sponsor.desc"), color: "text-primary" },
               { icon: Users, title: t("support.volunteer"), desc: t("support.volunteer.desc"), color: "text-gold" },
             ].map((opt, i) => (
-              <div key={i} className="bg-background rounded-xl border border-border p-8 text-center space-y-4 hover:shadow-md transition-shadow">
-                <opt.icon className={`w-12 h-12 mx-auto ${opt.color}`} />
+              <div key={i} className="bg-background rounded-xl border border-border p-8 text-center flex flex-col items-center gap-4 hover:shadow-md transition-shadow">
+                <opt.icon className={`w-12 h-12 ${opt.color}`} />
                 <h3 className="font-heading text-xl font-semibold text-foreground">{opt.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{opt.desc}</p>
-                <Link to="/contact">
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{opt.desc}</p>
+                <Link to="/contact" className="mt-4">
                   <Button variant="outline" size="sm">
                     {t("support.contact")} <ArrowRight className="w-4 h-4 ml-1" />
                   </Button>
@@ -56,7 +63,7 @@ export default function Support() {
           <Heart className="w-12 h-12 mx-auto opacity-80" />
           <h2 className="font-heading text-3xl font-bold">{t("donation.title")}</h2>
           <p className="text-lg text-secondary-foreground/80">{t("donation.text")}</p>
-          <Link to="/contact">
+          <Link to="/contact" className="inline-block pt-4">
             <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
               {t("support.contact")} <ArrowRight className="w-4 h-4 ml-2" />
             </Button>

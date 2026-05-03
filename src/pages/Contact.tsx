@@ -3,11 +3,11 @@ import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import { useI18n } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Contact() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
 
@@ -72,6 +72,24 @@ export default function Contact() {
                   <p className="text-foreground mt-2">{c.label}</p>
                 </div>
               ))}
+
+              {/* Elegant Facebook Messenger Link */}
+              <a 
+                href="https://m.me/SalonDuLivrePourEnfants" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-start gap-4 group"
+              >
+                <div className="w-10 h-10 rounded-lg bg-[#0084ff]/10 flex items-center justify-center shrink-0 group-hover:bg-[#0084ff]/20 transition-colors">
+                  <MessageCircle className="w-5 h-5 text-[#0084ff]" />
+                </div>
+                <div className="mt-1">
+                  <p className="text-foreground font-medium group-hover:text-[#0084ff] transition-colors">
+                    {{ fr: "Nous contacter sur Facebook Messenger", en: "Message us on Facebook Messenger", ar: "تواصل معنا عبر فيسبوك ماسنجر" }[lang as 'fr'|'en'|'ar']}
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-0.5">@SalonDuLivrePourEnfants</p>
+                </div>
+              </a>
             </div>
 
             {/* Map */}

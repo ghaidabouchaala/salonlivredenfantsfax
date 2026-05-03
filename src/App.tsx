@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { I18nProvider } from "@/lib/i18n";
 import Index from "./pages/Index";
 import About from "./pages/About";
+import ScrollToTop from "@/components/ScrollToTop";
 
 import Events from "./pages/Events";
 import SingleEvent from "./pages/SingleEvent";
@@ -26,6 +27,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
@@ -33,7 +35,7 @@ const App = () => (
             <Route path="/events" element={<Events />} />
             <Route path="/events/:id" element={<SingleEvent />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:id" element={<BlogArticle />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
 
             <Route path="/partners" element={<Partners />} />
             <Route path="/support" element={<Support />} />

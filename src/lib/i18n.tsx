@@ -138,6 +138,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "nav.partners": "Partners",
     "nav.support": "Support Us",
     "nav.contact": "Contact",
+    "nav.language": "Language",
     "hero.title": "Leaders are readers",
     "hero.subtitle": "Since 1995, we promote reading, creativity, and culture for children in Sfax and across Tunisia.",
     "hero.cta1": "Discover our activities",
@@ -242,6 +243,7 @@ const translations: Record<Lang, Record<string, string>> = {
     "nav.partners": "الشركاء",
     "nav.support": "ادعمنا",
     "nav.contact": "اتصل بنا",
+    "nav.language": "اللغة",
     // Hero
     "hero.title": "العقول التي تقود هي العقول التي تقرأ",
     "hero.subtitle": "منذ عام 1995، نعمل على تعزيز القراءة والإبداع والثقافة لدى الأطفال في صفاقس وجميع أنحاء تونس.",
@@ -353,7 +355,7 @@ const translations: Record<Lang, Record<string, string>> = {
 
 const I18nContext = createContext<I18nContextType>({
   lang: "fr",
-  setLang: () => {},
+  setLang: () => { },
   t: (key) => key,
   dir: "ltr",
 });

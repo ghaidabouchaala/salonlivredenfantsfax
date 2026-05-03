@@ -11,6 +11,33 @@ export default function Partners() {
 
   const renderPartners = (title: string, category: string) => {
     const list = partners.filter((p) => p.category === category);
+    
+    if (list.length === 0) {
+      return (
+        <div className="mb-12">
+          <h2 className="font-heading text-2xl font-bold text-foreground mb-6">{title}</h2>
+          <div className="bg-card/50 rounded-xl border-2 border-dashed border-border p-10 text-center flex flex-col items-center justify-center space-y-4">
+             <p className="text-muted-foreground">
+                {{ 
+                  fr: "Soyez le premier à rejoindre cette catégorie !", 
+                  en: "Be the first to join this category!", 
+                  ar: "كن أول من ينضم إلى هذه الفئة!" 
+                }[lang as 'fr'|'en'|'ar']}
+             </p>
+             <Link to="/contact">
+               <Button variant="outline" className="text-secondary border-secondary/50 hover:bg-secondary hover:text-secondary-foreground">
+                 {{ 
+                   fr: "Devenir partenaire", 
+                   en: "Become a partner", 
+                   ar: "كن شريكاً" 
+                 }[lang as 'fr'|'en'|'ar']}
+               </Button>
+             </Link>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="mb-12">
         <h2 className="font-heading text-2xl font-bold text-foreground mb-6">{title}</h2>

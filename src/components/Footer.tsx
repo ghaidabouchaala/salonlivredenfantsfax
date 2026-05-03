@@ -3,6 +3,7 @@ import { useI18n } from "@/lib/i18n";
 import { Mail, Phone, MapPin, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
+import { LangDropdown } from "@/components/Header";
 
 export default function Footer() {
   const { t, lang } = useI18n();
@@ -21,16 +22,23 @@ export default function Footer() {
       <div className="container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Brand */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <img src={logo} alt="Logo" className="h-12 w-auto rounded-full bg-white p-0.5" />
-              <span className="font-heading text-sm font-semibold leading-tight">
-                {lang === "fr" ? "Salon du Livre de l'Enfant de Sfax" : "Sfax Children's Book Fair"}
-              </span>
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <img src={logo} alt="Logo" className="h-12 w-auto rounded-full bg-white p-0.5" />
+                <span className="font-heading text-sm font-semibold leading-tight">
+                  {lang === "fr" ? "Salon du Livre de l'Enfant de Sfax" : "Sfax Children's Book Fair"}
+                </span>
+              </div>
+              <p className="text-sm text-primary-foreground/70 leading-relaxed">
+                {t("footer.mission")}
+              </p>
             </div>
-            <p className="text-sm text-primary-foreground/70 leading-relaxed">
-              {t("footer.mission")}
-            </p>
+
+            {/* Language Switcher */}
+            <div className="flex items-center gap-3">
+              <LangDropdown variant="transparent" />
+            </div>
           </div>
 
           {/* Links */}
@@ -71,7 +79,6 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-
 
         </div>
 
