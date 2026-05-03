@@ -1,5 +1,5 @@
 import { writeFileSync, mkdirSync } from "fs";
-import { dirname } from "path";
+import { dirname, join, extname } from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 
@@ -32,6 +32,39 @@ async function notionFetch(path, options = {}) {
   return res.json();
 }
 
+async function downloadImage(url, baseName) {
+  if (!url || !url.startsWith("http")) return url;
+  
+  const scriptDir = dirname(fileURLToPath(import.meta.url));
+  const publicDir = join(scriptDir, "../public/images/blog");
+  mkdirSync(publicDir, { recursive: true });
+  
+  try {
+    let ext = ".jpg";
+    try {
+      const parsed = new URL(url);
+      const pathnameExt = extname(parsed.pathname);
+      if (pathnameExt) ext = pathnameExt;
+    } catch (e) {}
+
+    const filename = `${baseName}${ext}`;
+    const dest = join(publicDir, filename);
+    
+    console.log(`      Downloading image: ${filename}`);
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Failed to fetch image: ${res.statusText}`);
+    
+    const arrayBuffer = await res.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    writeFileSync(dest, buffer);
+    
+    return `/images/blog/${filename}`;
+  } catch (err) {
+    console.error(`      Error downloading image ${baseName}:`, err.message);
+    return url;
+  }
+}
+
 function transformRichText(richText) {
   if (!richText || !Array.isArray(richText)) return [];
   return richText.map((rt) => ({
@@ -44,9 +77,10 @@ function transformRichText(richText) {
   }));
 }
 
-function transformBlocks(rawBlocks) {
+async function transformBlocks(rawBlocks, slug) {
   const result = [];
   let i = 0;
+  let imgIndex = 0;
 
   while (i < rawBlocks.length) {
     const block = rawBlocks[i];
@@ -94,10 +128,16 @@ function transformBlocks(rawBlocks) {
         break;
       }
       case "image": {
-        const imageUrl =
+        let imageUrl =
           block.image.type === "external"
             ? block.image.external?.url || ""
             : block.image.file?.url || "";
+        
+        if (imageUrl) {
+          imageUrl = await downloadImage(imageUrl, `${slug}-block-${imgIndex}`);
+          imgIndex++;
+        }
+
         const caption = (block.image.caption || []).map((rt) => rt.plain_text).join("");
         result.push({ type: "image", url: imageUrl, caption });
         break;
@@ -183,6 +223,10 @@ async function main() {
           : page.cover.file?.url || "";
     }
 
+    if (coverImage) {
+      coverImage = await downloadImage(coverImage, `${slug}-cover`);
+    }
+
     const post = {
       id: page.id,
       slug,
@@ -198,7 +242,7 @@ async function main() {
 
     console.log(`  → Fetching blocks for: "${title}"`);
     const rawBlocks = await fetchAllBlocks(page.id);
-    post.blocks = transformBlocks(rawBlocks);
+    post.blocks = await transformBlocks(rawBlocks, slug);
     console.log(`    ${post.blocks.length} block(s) processed`);
 
     posts.push(post);
