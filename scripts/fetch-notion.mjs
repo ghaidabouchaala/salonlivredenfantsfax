@@ -266,3 +266,4 @@ main().catch((err) => {
   console.error("Notion fetch failed:", err.message || err);
   process.exit(1);
 });
+// Trigger build for new Notion article: Sat May  9 20:46:00 CEST 2026
