@@ -53,7 +53,7 @@ export const events: Event[] = [
       ar: "مقر الجمعية، طريق لفران كم 2، صفاقس، تونس، 3013",
     },
     image: ag2026Image,
-    status: "upcoming",
+    status: "past",
   },
   {
     id: "salon-2026",
