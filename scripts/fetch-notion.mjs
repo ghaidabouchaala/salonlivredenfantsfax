@@ -1,3 +1,4 @@
+// Trigger build with Notion variables
 import { writeFileSync, mkdirSync } from "fs";
 import { dirname, join, extname } from "path";
 import { fileURLToPath } from "url";
