@@ -9,8 +9,13 @@ const NOTION_TOKEN = process.env.NOTION_TOKEN;
 const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
 
 if (!NOTION_TOKEN || !NOTION_DATABASE_ID) {
-  console.error("Error: NOTION_TOKEN and NOTION_DATABASE_ID must be set in .env");
-  process.exit(1);
+  console.warn("Warning: NOTION_TOKEN or NOTION_DATABASE_ID not set. Skipping Notion fetch...");
+  // Write an empty array to the output file so the build doesn't fail later if it expects the file
+  const scriptDir = dirname(fileURLToPath(import.meta.url));
+  const outputPath = `${scriptDir}/../src/data/blog-posts.json`;
+  mkdirSync(dirname(outputPath), { recursive: true });
+  writeFileSync(outputPath, JSON.stringify([], null, 2), "utf-8");
+  process.exit(0);
 }
 
 const NOTION_VERSION = "2022-06-28";
