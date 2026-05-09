@@ -30,6 +30,32 @@ export interface Partner {
 
 export const events: Event[] = [
   {
+    id: "ag-2026",
+    title: {
+      fr: "Assemblée Générale Annuelle",
+      en: "Annual General Assembly",
+      ar: "الجلسة العامة السنوية",
+    },
+    description: {
+      fr: "L'Association du Salon du Livre de l'Enfant de Sfax a l'honneur de vous inviter à son Assemblée Générale Annuelle au siège de l'association.",
+      en: "The Sfax Children's Book Fair Association is honored to invite you to its Annual General Assembly at the association's headquarters.",
+      ar: "تتشرف جمعية معرض صفاقس لكتاب الطفل بدعوتكم لحضور الجلسة العامة السنوية بمقر الجمعية.",
+    },
+    content: {
+      fr: "L'Association du Salon du Livre de l'Enfant de Sfax a l'honneur de vous inviter à assister à son Assemblée Générale Annuelle, le samedi 9 mai à 15h00 au siège de l'association. Votre présence nous honore.",
+      en: "The Sfax Children's Book Fair Association is honored to invite you to attend its Annual General Assembly on Saturday, May 9, at 3:00 PM at the association's headquarters. Your presence is welcomed.",
+      ar: "تتشرف جمعية معرض صفاقس لكتاب الطفل بدعوتكم لحضور الجلسة العامة السنوية و ذلك يوم السبت 9 ماي على الساعة الثالثة بعد الزوال بمقر الجمعية. حضوركم يسعدنا.",
+    },
+    date: "2026-05-09",
+    location: {
+      fr: "Siège de l'Association",
+      en: "Association Headquarters",
+      ar: "مقر الجمعية",
+    },
+    image: ag2026Image,
+    status: "upcoming",
+  },
+  {
     id: "salon-2026",
     title: {
       fr: "31ème Salon du Livre de l'Enfant de Sfax",
@@ -229,6 +255,7 @@ import sarraCharfiImage from "@/assets/sarra-charfi.png";
 import chefyaHdiderImage from "@/assets/chefya-hdider.png";
 import wajdiAtitallahImage from "@/assets/wajdi-atitallah.png";
 import chafikGhorbelImage from "@/assets/chafik-ghorbel.jpg";
+import ag2026Image from "@/assets/ag-2026.png";
 
 export const members: Member[] = [
   { name: "Slim Achiche", role: { fr: "Président", en: "President" }, bio: { fr: "Président de l'association, engagé dans la promotion de la lecture et de la culture pour les enfants de Sfax.", en: "President of the association, committed to promoting reading and culture for the children of Sfax." }, image: slimAchicheImage, category: "board" },
