@@ -28,32 +28,41 @@ export default function SingleEvent() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="bg-primary text-primary-foreground py-16 md:py-24">
-        <div className="container max-w-4xl">
-          <Link to="/events" className="text-primary-foreground/60 hover:text-primary-foreground text-sm mb-6 block">← {t("events.title")}</Link>
-          <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium mb-5 ${event.status === "upcoming" ? "bg-secondary/20 text-secondary" : "bg-primary-foreground/10 text-primary-foreground/70"}`}>
-            {t(`events.${event.status}`)}
-          </span>
-          <h1 className="font-heading text-3xl md:text-5xl font-bold mb-6">{l(event.title)}</h1>
-          <div className="flex flex-wrap items-center gap-6 text-sm text-primary-foreground/60">
-            <span className="flex items-center gap-1"><Calendar className="w-4 h-4" /> {event.date}{event.endDate ? ` — ${event.endDate}` : ""}</span>
-            <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {l(event.location)}</span>
+      <section className="bg-primary text-primary-foreground pt-12 pb-12 md:pt-16 md:pb-20">
+        <div className="container max-w-5xl">
+          <Link to="/events" className="text-primary-foreground/60 hover:text-primary-foreground text-sm mb-6 inline-block transition-colors">← {t("events.title")}</Link>
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            <div>
+              <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium mb-5 uppercase tracking-wider ${event.status === "upcoming" ? "bg-secondary text-secondary-foreground" : "bg-primary-foreground/10 text-primary-foreground/70"}`}>
+                {t(`events.${event.status}`)}
+              </span>
+              <h1 className={`font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight ${lang === "ar" ? "font-[Noto_Naskh_Arabic,Amiri,serif]" : ""}`} dir={lang === "ar" ? "rtl" : "ltr"}>
+                {l(event.title)}
+              </h1>
+              <div className={`flex flex-wrap items-center gap-6 text-sm text-primary-foreground/80 ${lang === "ar" ? "flex-row-reverse" : ""}`}>
+                <span className="flex items-center gap-2 bg-primary-foreground/5 px-3 py-1.5 rounded-lg border border-primary-foreground/10"><Calendar className="w-4 h-4 text-secondary" /> {event.date}{event.endDate ? ` — ${event.endDate}` : ""}</span>
+                <span className="flex items-center gap-2 bg-primary-foreground/5 px-3 py-1.5 rounded-lg border border-primary-foreground/10"><MapPin className="w-4 h-4 text-secondary" /> {l(event.location)}</span>
+              </div>
+            </div>
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-secondary to-orange-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+              <div className="relative rounded-xl overflow-hidden border border-primary-foreground/10 shadow-2xl">
+                {event.image && event.image !== "/placeholder.svg" ? (
+                  <img src={event.image} alt={l(event.title)} className="w-full h-auto object-contain bg-white" />
+                ) : (
+                  <div className="aspect-[4/5] bg-card flex items-center justify-center">
+                    <BookOpen className="w-20 h-20 text-muted-foreground/20" />
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Content */}
-      <section className="py-16">
-        <div className="container max-w-4xl">
-          <div className="rounded-xl overflow-hidden border border-border mb-12">
-            {event.image && event.image !== "/placeholder.svg" ? (
-              <img src={event.image} alt={l(event.title)} className="w-full object-cover max-h-[500px]" />
-            ) : (
-              <div className="aspect-video bg-card flex items-center justify-center">
-                <BookOpen className="w-16 h-16 text-muted-foreground/20" />
-              </div>
-            )}
-          </div>
+      <section className="py-20 bg-background relative overflow-hidden">
+        <div className="container max-w-4xl relative z-10">
 
           <div className="grid md:grid-cols-3 gap-12">
             <div className="md:col-span-2">
